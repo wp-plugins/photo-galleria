@@ -1,0 +1,10 @@
+body {opacity .999;}
+.caption{font-style:italic;color:#887;}
+	.galleria {width:auto;margin:auto;}
+	.galleria li{margin: 0 6px 6px 0;}
+	.galleria li div{left:640px}
+	.galleria li div .caption{font:italic 0.9em/1.4 georgia,serif;}
+	#main_image{margin:0 auto 20px auto;width:auto;background:#fff;}
+	#main_image img{margin-bottom:10px;max-width:950px;height:auto;width:auto;max-height:950px;}
+
+	

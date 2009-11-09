@@ -1,21 +1,22 @@
 <?php
-/*
-
+/****************************************************************
 Plugin Name: Photo Galleria
 Plugin URI: http://graphpaperpress.com/2008/05/31/photo-galleria-plugin-for-wordpress/
 Description: This plugin replaces the default gallery feature in WordPress 2.5+ with a minimal, jquery-powered gallery.
 Version: 0.2
-Author: Thad Allender & Chandra Maharzan
+Author: Thad Allender
 Author URI: http://graphpaperpress.com
 License: GPL
-
-*******************************************************
-This plugin recreates your Wordpress photo gallery into a structured, minimal gallery styled with Monc's Galleria jquery script.
+*****************************************************************
+Thanks to DevKick.com
 http://devkick.com/lab/galleria/
-Thanks to Justin Tadlock for improving the Wordpress gallery functionality.
-http://justintadlock.com/archives/2008/04/13/cleaner-wordpress-gallery-plugin
-
-*/
+*****************************************************************
+Thanks to Justin Tadlock for code snippets
+http://justintadlock.com/
+*****************************************************************
+Big thanks to Chandra Maharzan for debugging and awesomifying
+http://nhuja.com
+*****************************************************************/
 
 // define constants
 $foldername ='photo-galleria';
@@ -30,6 +31,7 @@ function photo_galleria_load_scripts( ) {
 	wp_enqueue_style('photo-galleria-css', plugins_url( 'css/galleria.css', __FILE__ ), array(), '1.0' );
 }
 
+// add scripts to header
 function photo_galleria_js_head(){
 
 if(!is_admin()){
@@ -96,6 +98,7 @@ jQuery(function($) {
 
 add_action('wp_head','photo_galleria_js_head');
 
+// modifies the gallery shortcode 
 function photo_galleria_shortcode($attr) {
 
 global $post;

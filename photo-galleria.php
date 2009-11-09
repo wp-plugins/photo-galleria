@@ -1,12 +1,11 @@
 <?php
-
 /*
 
 Plugin Name: Photo Galleria
-Plugin URI: http://graphpaperpress.com/2008/05/30/photo-galleria-plugin-for-wordpress/
+Plugin URI: http://graphpaperpress.com/2008/05/31/photo-galleria-plugin-for-wordpress/
 Description: This plugin replaces the default gallery feature in WordPress 2.5+ with a minimal, jquery-powered gallery.
-Version: 0.1.1
-Author: Thad Allender
+Version: 0.2
+Author: Thad Allender & Chandra Maharzan
 Author URI: http://graphpaperpress.com
 License: GPL
 
@@ -18,29 +17,40 @@ http://justintadlock.com/archives/2008/04/13/cleaner-wordpress-gallery-plugin
 
 */
 
-function photo_galleria_js(){
+// define constants
+$foldername ='photo-galleria';
+load_plugin_textdomain($foldername, PLUGINDIR.'/'.dirname(plugin_basename(__FILE__)));
+$pluginURI = get_option('siteurl').'/wp-content/plugins/'.dirname(plugin_basename(__FILE__));
+
+// load scripts
+if (!is_admin()) add_action( 'init', 'photo_galleria_load_scripts' );
+function photo_galleria_load_scripts( ) {
+	wp_enqueue_script('jquery');
+	wp_enqueue_script('photo-galleria', plugins_url( 'js/jquery.galleria.js', __FILE__ ), array('jquery'));
+	wp_enqueue_style('photo-galleria-css', plugins_url( 'css/galleria.css', __FILE__ ), array(), '1.0' );
+}
+
+function photo_galleria_js_head(){
 
 if(!is_admin()){
-echo "<script type='text/javascript' src='".get_bloginfo("url")."/wp-content/plugins/photo-galleria/js/jquery-1.2.6.min.js'></script>
-<script type='text/javascript' src='".get_bloginfo("url")."/wp-content/plugins/photo-galleria/js/jquery.galleria.pack.js'></script>
-<link rel='stylesheet' href='".get_bloginfo("url")."/wp-content/plugins/photo-galleria/css/galleria-mod.css' type='text/css' />
-<link rel='stylesheet' href='".get_bloginfo("url")."/wp-content/plugins/photo-galleria/css/galleria.css' type='text/css' />
-
+echo "
 <script type='text/javascript'>
-
-	jQuery(function($) {
+jQuery(function($) {
 		
-		$('.gallery').addClass('galleria'); // adds new class name to maintain degradability
+		$('ul.gallery_list').addClass('show_gallery'); // adds new class name to maintain degradability
+		$('.galleria_wrapper').remove();"; 
+			
+		if(is_single()) { 
 		
-		$('ul.galleria').galleria({
-			history   : false, // activates the history object for bookmarking, back-button etc.
-			clickNext : true, // helper for making the image clickable
-			insert    : '#main_image', // the containing selector for our main image
-			onImage   : function(image,caption,thumb) { // let's add some image effects for demonstration purposes
+		echo "$('ul.show_gallery li:first').addClass('active');	
+		$('ul.show_gallery').galleria({
+			history   : false, 
+			clickNext : true,			
+			onImage   : function(image,caption,thumb) { 
 				
 				// fade in the image & caption
-				if(! ($.browser.mozilla && navigator.appVersion.indexOf('Win')!=-1) ) { // FF/Win fades large images terribly slow
-					image.css('display','none').fadeIn(600);
+				if(!($.browser.mozilla && navigator.appVersion.indexOf('Win')!=-1) ) { // FF/Win fades large images terribly slow
+					image.css('display','none').fadeIn(1000);
 				}
 				caption.css('display','none').fadeIn(1000);
 				
@@ -48,42 +58,46 @@ echo "<script type='text/javascript' src='".get_bloginfo("url")."/wp-content/plu
 				var _li = thumb.parents('li');
 				
 				// fade out inactive thumbnail
-				_li.siblings().children('img.selected').fadeTo(500,0.7);
+				_li.siblings().children('img.selected').fadeTo(500,0.8);
 				
 				// fade in active thumbnail
 				thumb.fadeTo('fast',1).addClass('selected');
 				
 				// add a title for the clickable image
-				image.attr('title','Next image >>');
+				image.attr('title','Next image >');				
+				
 			},
+			
 			onThumb : function(thumb) { // thumbnail effects goes here
 				
 				// fetch the thumbnail container
 				var _li = thumb.parents('li');
-				
+								
 				// if thumbnail is active, fade all the way.
-				var _fadeTo = _li.is('.active') ? '1' : '0.7';
+				var _fadeTo = _li.is('.active') ? '1' : '0.8';
 				
-				// fade in the thumbnail when finished loading
-				thumb.css({display:'none',opacity:_fadeTo}).fadeIn(500);
+				// fade in the thumbnail when finnished loading
+				thumb.css({display:'none',opacity:_fadeTo}).fadeIn(1500);
 				
 				// hover effects
 				thumb.hover(
 					function() { thumb.fadeTo('fast',1); },
-					function() { _li.not('.active').children('img').fadeTo('fast',0.7); } // don't fade out if the parent is active
+					function() { _li.not('.active').children('img').fadeTo('fast',0.8); } // don't fade out if the parent is active
 				)
 			}
-		});
-	});
-	
+		});";
+		} else {
+		 	echo "$('ul.show_gallery').galleria();";
+		}
+	echo "});	
 	</script>";
-
 }
 }
 
-add_action('wp_print_scripts','photo_galleria_js');
+add_action('wp_head','photo_galleria_js_head');
 
 function photo_galleria_shortcode($attr) {
+
 global $post;
 
 	// We're trusting author input, so let's at least make sure it looks like a valid orderby statement
@@ -99,10 +113,9 @@ global $post;
 		'icontag' => 'dt',
 		'captiontag' => 'dd',
 		'columns' => 3,
-		'size' => 'thumbnail',
+		'size' => 'medium',
 	), $attr));
 
-        $count = 1;
 	$id = intval($id);
 	$attachments = get_children("post_parent=$id&post_type=attachment&post_mime_type=image&orderby={$orderby}");
 
@@ -122,45 +135,48 @@ global $post;
 	$columns = intval($columns);
 	$itemwidth = $columns > 0 ? floor(100/$columns) : 100;
 
-// Open gallery
-	$output = apply_filters('gallery_style', "<p class='gallery-nav'><a href='#' onclick='$.galleria.prev(); return false;'>&laquo; previous</a> | <a href='#' onclick='$.galleria.next(); return false;'>next &raquo;</a></p>
-<div id='main_image'></div>
-<ul class='gallery-thumbs galleria'>");
 
-// Loop through each gallery item
+
+	// Open gallery
+	$output = apply_filters('gallery_style', "<div class='photogalleria'>
+<ul class='gallery_list'>");
+
+	// Loop through each gallery item
 	foreach ( $attachments as $id => $attachment ) {
-	// Larger image URL
-		$a_img = wp_get_attachment_url($id);
-	// Attachment page ID
+		
+		// Attachment page ID
 		$att_page = get_attachment_link($id);
-	// Returns array
+		// Returns array
 		$img = wp_get_attachment_image_src($id, $size);
 		$img = $img[0];
-	// If no caption is defined, set the title and alt attributes to title
+		// If no caption is defined, set the title and alt attributes to title
 		$title = $attachment->post_excerpt;
 		if($title == '') $title = $attachment->post_title;
 
-// Output each gallery item
-if($count == 1)
-$output .= "<li class='active'>";
-if($count > 1)
-$output .= "<li>";
-
-// Set the link to the attachment URL
-		$link = $a_img;
-		$output .= "\t<a href=\"$link\" title=\"$title\" class=\"$a_class\" rel=\"$a_rel\">";
-	// Output image
+		// Set the link to the attachment URL
+		
+		$output .= "<li>";
+		
+		if(!is_single()) {
+			$output .= "<a href=\"".get_permalink()."\" title=\"$title\">";
+		}
+		
+		// Output image
 		$output .= "<img src=\"$img\" alt=\"$title\" />";
-	// Close link
-		$output .= "</a>";
-		$output .= "</li>
-";
-$count++;
+	
+		
+		if(!is_single()) {
+			// Close link
+			$output .= "</a>";
+		}
+		
+		$output .= "</li>";
+
 	// Close individual gallery item
 
 	}
 // Close gallery
-	$output .= "\n</ul><div style='clear:both;' class='clear'>\n";
+	$output .= "</ul></div>";
 	return $output;
 }
 

@@ -24,7 +24,7 @@ Forum:  http://graphpaperpress.com/support/
 1. You can modify the two css files to make the gallery fit the width of your site.  By default, it is 950px wide.
 
 == Screenshots ==
-Default view with large image on top with thumbnails below
+1. Default view with large image on top with thumbnails below
 
 == Frequently Asked Questions ==
 

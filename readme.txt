@@ -23,13 +23,24 @@ Forum:  http://graphpaperpress.com/support/
 1. Activate the plugin through the 'Plugins' menu in WordPress
 1. You can modify the two css files to make the gallery fit the width of your site.  By default, it is 950px wide.
 
+== Screenshot ==
+Default view with large image on top with thumbnails below
+
 == Frequently Asked Questions ==
 
 = The gallery is too wide.  How do I fix that? =
 
 Virtually every width and height variable (including large photo sizes, thumbnails and containers) can be controlled by editing the attached css files.
 
+= Support =
+http://graphpaperpress.com/support/
+
 == Changelog ==
+
+= Version 0.2.1 =
+* Added screenshot
+* Updated versions
+* Added comments to code
 
 = Version 0.2 =
 * Now works with latest jquery (1.3.2)

@@ -3,7 +3,7 @@
 Plugin Name: Photo Galleria
 Plugin URI: http://graphpaperpress.com/2008/05/31/photo-galleria-plugin-for-wordpress/
 Description: This plugin replaces the default gallery feature in WordPress 2.5+ with a minimal, jquery-powered gallery.
-Version: 0.2.2
+Version: 0.2.3
 Author: Thad Allender
 Author URI: http://graphpaperpress.com
 License: GPL
@@ -141,8 +141,7 @@ global $post;
 
 
 	// Open gallery
-	$output = apply_filters('gallery_style', "<div class='photogalleria'>
-<ul class='gallery_list'>");
+	$output = apply_filters('gallery_style', "<div class='photogalleria'>\n\t<ul class='gallery_list'>");
 
 	// Loop through each gallery item
 	foreach ( $attachments as $id => $attachment ) {
@@ -155,17 +154,20 @@ global $post;
 		// If no caption is defined, set the title and alt attributes to title
 		$title = $attachment->post_excerpt;
 		if($title == '') $title = $attachment->post_title;
+		// If no description is defined, set the description to the caption
+		$description = $attachment->post_content;
+		if($description == '') $description = $title;
 
 		// Set the link to the attachment URL
 		
-		$output .= "<li>";
+		$output .= "\n\t\t<li>";
 		
 		if(!is_single()) {
 			$output .= "<a href=\"".get_permalink()."\" title=\"$title\">";
 		}
 		
 		// Output image
-		$output .= "<img src=\"$img\" alt=\"$title\" />";
+		$output .= "<img src=\"$img\" alt=\"$title\" title=\"$description\" />";
 	
 		
 		if(!is_single()) {
@@ -179,7 +181,7 @@ global $post;
 
 	}
 // Close gallery
-	$output .= "</ul></div>";
+	$output .= "\n\t</ul>\n</div>";
 	return $output;
 }
 

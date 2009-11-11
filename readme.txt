@@ -10,7 +10,7 @@ Photo Galleria is a simple, yet elegant, plugin for photographers and designers 
 
 == Description ==
 
-Photo Galleria is a simple, yet elegant, plugin for photographers and designers who want to beautify and streamline their Wordpress photo galleries. The Photo Galleria plugin synchronizes Galleria, an elegant jQuery javascript library, with Wordpress' built-in media manager. Simply upload photos as normal and the Photo Galleria plugin will create a photo gallery with fade-in and fade-out effects common on flash-based websites. All the transitions happen inline without having to navigate to multiple Wordpress attachment pages. Pretty neat, eh?
+Photo Galleria is a simple, yet elegant, plugin for photographers and designers who want to beautify and simplify their Wordpress photo galleries. The Photo Galleria plugin filters the default Wordpress gallery shortcode and replaces it with an elegant jQuery-powered gallery.  Simply upload photos as normal and the Photo Galleria plugin will create a photo gallery with fade-in and fade-out effects common on flash-based websites. All the transitions happen inline without having to navigate to multiple Wordpress attachment pages. Pretty neat, eh?
 
 Photo Galleria displays the thumbnail images that Wordpress creates for you and displays the original, high resolution uploaded image. Both are constrained proportionally via css. You can control their display size via the two CSS files included with the plugin. By default, the thumbnails display at 125px by 125px square and the image displays at 950px wide. Virtually every aspect of the presentation of Photo Galleria can be controlled via CSS.
 
@@ -32,6 +32,10 @@ Forum:  http://graphpaperpress.com/support/
 
 Virtually every width and height variable (including large photo sizes, thumbnails and containers) can be controlled by editing the attached css files.
 
+= What about captions? =
+
+By default, the description shows up underneath the active photo.  If no image description exists, then the image caption is used.
+ 
 = Support =
 http://graphpaperpress.com/support/
 

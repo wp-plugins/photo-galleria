@@ -21,7 +21,7 @@ Forum:  http://graphpaperpress.com/support/
 
 1. Upload the entire `photo-galleria` folder to the `/wp-content/plugins/` directory
 1. Activate the plugin through the 'Plugins' menu in WordPress
-1. You can modify the two css files to make the gallery fit the width of your site.  By default, it is 950px wide.
+1. All existing galleries inserted using the [gallery] shortcode will now use Photo Galleria.
 
 == Screenshots ==
 1. Default view with large image on top with thumbnails below
@@ -36,10 +36,18 @@ Virtually every width and height variable (including large photo sizes, thumbnai
 
 By default, the description shows up underneath the active photo.  If no image description exists, then the image caption is used.
  
-= Support =
+= How do I get help? =
 http://graphpaperpress.com/support/
 
 == Changelog ==
+
+= Version 0.2.3 =
+* Added caption/description support
+* Added line breaks for more readable html output
+* Updated readme.txt
+
+= Version 0.2.2 =
+* Updates styles
 
 = Version 0.2.1 =
 * Added screenshot

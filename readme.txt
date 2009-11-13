@@ -41,6 +41,9 @@ http://graphpaperpress.com/support/
 
 == Changelog ==
 
+= Version 0.2.4
+* Fixed text wrapping issue
+
 = Version 0.2.3 =
 * Added caption/description support
 * Added line breaks for more readable html output

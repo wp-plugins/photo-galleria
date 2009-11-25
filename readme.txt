@@ -41,6 +41,9 @@ http://graphpaperpress.com/support/
 
 == Changelog ==
 
+= Version 0.2.5
+* Fixed gallery display on homepage and pages
+
 = Version 0.2.4
 * Fixed text wrapping issue
 

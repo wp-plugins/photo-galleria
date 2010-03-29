@@ -3,7 +3,7 @@
 Plugin Name: Photo Galleria
 Plugin URI: http://graphpaperpress.com/2008/05/31/photo-galleria-plugin-for-wordpress/
 Description: This plugin replaces the default gallery feature in WordPress 2.5+ with a minimal, jquery-powered gallery.
-Version: 0.2.5
+Version: 0.2.6
 Author: Thad Allender
 Author URI: http://graphpaperpress.com
 License: GPL
@@ -40,7 +40,7 @@ echo "
 jQuery(function($) {
 		
 		$('ul.gallery_list').addClass('show_gallery'); // adds new class name to maintain degradability
-		$('.galleria_wrapper').remove();"; 
+		";
 		
 		echo "
 		$('ul.show_gallery').galleria({
@@ -86,7 +86,16 @@ jQuery(function($) {
 				)
 			}
 		});";
-	echo "$('ul.show_gallery li:first').addClass('active');	
+		
+		if(!is_single()) {
+			echo "$('.galleria_container').remove();
+			$('.galleria li').click(function(event){
+     			window.location=$(this).find('img').attr('alt'); return false;
+   			});";			
+		} else {
+			echo "$('ul.show_gallery li:first').addClass('active');";
+		}
+	echo "
 	});	
 	</script>";
 }
@@ -156,23 +165,10 @@ global $post;
 
 		// Set the link to the attachment URL
 		
-		$output .= "\n\t\t<li>";
-		
-		/*
-		if(!is_single()) {
-			$output .= "<a href=\"".get_permalink()."\" title=\"$title\">";
-		}
-		*/
+		$output .= "\n\t\t<li>";		
 		
 		// Output image
-		$output .= '<img src="'.$img.'" alt="'.$title.'" title="'.$description.'" />';
-	
-		/*
-		if(!is_single()) {
-			// Close link
-			$output .= "</a>";
-		}
-		*/
+		$output .= '<img src="'.$img.'" alt="'.get_permalink().'" title="'.$description.'" />';	
 		
 		$output .= "</li>";
 

@@ -2,8 +2,8 @@
 Contributors: endortrails
 Donate link: http://graphpaperpress.com/
 Tags: photo, photos, gallery, galleries, photo gallery, lightbox 
-Requires at least: 2.5
-Tested up to: 2.9
+Requires at least: 2.9
+Tested up to: 2.9.2
 Stable tag: trunk
 
 Photo Galleria is a simple, yet elegant, plugin for photographers and designers who want to beautify and streamline their Wordpress photo galleries.

@@ -3,7 +3,7 @@
 Plugin Name: Photo Galleria
 Plugin URI: http://graphpaperpress.com/2008/05/31/photo-galleria-plugin-for-wordpress/
 Description: This plugin replaces the default gallery feature in WordPress 2.5+ with a minimal, jquery-powered gallery.
-Version: 0.2.7
+Version: 0.2.8
 Author: Thad Allender
 Author URI: http://graphpaperpress.com
 License: GPL
@@ -41,7 +41,7 @@ jQuery(function($) {
 		
 		$('ul.gallery_list').addClass('show_gallery'); // adds new class name to maintain degradability
 		";
-		if(is_single()) {
+		if(is_single() || is_page()) {
 			echo "$('ul.show_gallery li:first').addClass('active');";
 		}
 		echo "
@@ -89,7 +89,7 @@ jQuery(function($) {
 			}
 		});";
 		
-		if(!is_single()) {
+		if(!is_single() && !is_page()) {
 			echo "$('.galleria_container').remove();
 			$('.galleria li').click(function(event){
      			window.location=$(this).find('img').attr('alt'); return false;

@@ -14,5 +14,5 @@
 .show_gallery {width:auto;margin:0 auto; float: left}
 .show_gallery li{width:108px;height:108px;margin:0 10px 10px 0;background:#000;overflow:hidden}
 .show_gallery li div .caption{font:italic 0.7em/1.4 georgia,serif;}
-.galleria_container{margin:0 auto 20px auto;height:auto;width:auto;;background:#fff;text-align:center;display:block}
+.galleria_container{margin:0 auto 20px auto;height:auto;width:auto;text-align:center;display:block}
 .galleria_container img{margin-bottom:10px;}

@@ -41,6 +41,9 @@ http://graphpaperpress.com/support/
 
 == Changelog ==
 
+= Version 0.2.9
+* Fixed alt tag and background color
+
 = Version 0.2.5
 * Fixed gallery display on homepage and pages
 

@@ -27,18 +27,30 @@ Support Forum:  http://graphpaperpress.com/support/
 
 == Frequently Asked Questions ==
 
-= The gallery is too wide.  How do I fix that? =
+= Why does mine not work? =
 
-Virtually every width and height variable (including large photo sizes, thumbnails and containers) can be controlled by editing the attached css files.
+You likely have a plugin that is inserting a conflicting javascript (the stuff that runs Photo Galleria). Deactivate your plugins, one by one, to see which one is the culprit.  If that doesn't work, switch to the default WordPress theme to see if your theme is actually adding conflicting javascript.  If it is, consider upgrading to a theme that enqueues javascript the smart way.  Finally, delete your browser cache after completing the steps above.
 
-= What about captions? =
+= What about titles and captions? =
 
-Yep.  If you got 'em, this plugin can display 'em.
+Yep.  If you got 'em, this plugin can display 'em  Just make sure you add yours to each image after uploading.
+
+= Can I have multiple Photo Gallerias on my homepage, archive page, page or post? =
+
+No.  Why?  Photo Galleria loads large images all at once.  If you have, say, 10 posts on your archive page, each containing 10 images, your users would have to wait for 100 large images to load before they could even begin to interact with your Photo Galleria.  This would make for a terrible user experience.
+
+= How do I change colors, thumbnail sizes or icons? =
+
+Virtually every aspect of each theme is customizable with CSS.  Themes are located here: /wp-content/plugins/photo-galleria/themes/
  
 = How do I get help? =
 http://graphpaperpress.com/support/
 
 == Changelog ==
+
+= Version 0.3.1
+* Added support for the lightbox theme
+* Updated readme.txt
 
 = Version 0.3.0
 * Massive overhaul dudes and dudets!

@@ -3,7 +3,7 @@
 Plugin Name: Photo Galleria
 Plugin URI: http://graphpaperpress.com/2008/05/31/photo-galleria-plugin-for-wordpress/
 Description: Creates beautiful slideshows from embedded WordPress galleries.
-Version: 0.3.0
+Version: 0.3.1
 Author: Thad Allender
 Author URI: http://graphpaperpress.com
 License: GPL
@@ -48,7 +48,11 @@ $design_options = array(
 	'dots' => array(
 		'value' =>	'dots',
 		'label' => __( 'Dots' )
-	)
+	),
+		'lightbox' => array(
+		'value' =>	'lightbox',
+		'label' => __( 'Lightbox' )
+	),
 );
 
 $transition_options = array(
@@ -194,8 +198,16 @@ function photo_galleria_options_do_page() {
 		<h3>Common questions</h3>
 		<h4>Why does mine not work?</h4>
 		<p>You likely have a plugin that is inserting a conflicting javascript (the stuff that runs Photo Galleria). Deactivate your plugins, one by one, to see which one is the culprit.  If that doesn't work, switch to the default WordPress theme to see if your theme is actually adding conflicting javascript.  If it is, consider upgrading to <a href="http://graphpaperpress.com" target="_blank" title="visit Graph Paper Press">a better theme.</a>  Finally, delete your browser cache after completing the steps above.</p>
-		<h4>How do I change colors or icons?</h4>
-		<p>You can change both CSS colors and icons here: /wp-content/plugins/photo-galleria/themes/</p>
+		<h4>Can I have multiple Photo Gallerias on my homepage, archive page, page or post?</h4>
+		<p>No.  Why?  Photo Galleria loads large images all at once.  If you have, say, 10 posts on your archive page, each containing 10 images, your users would have to wait for 100 large images to load before they could even begin to interact with your Photo Galleria.  This would make for a terrible user experience.</p>
+		<h4>How do I change colors, thumbnail sizes or icons?</h4>
+		<p>Virtually every aspect of each theme is customizable with CSS.  Themes are located here: /wp-content/plugins/photo-galleria/themes/.  For example, here I will enlarge the thumbnails:</p>
+        <p><code>.galleria-thumbnails .galleria-image{width:90px;height:60px;}<br />
+        .galleria-thumbnails-list{height:60px;}<br />
+        .galleria-thumb-nav-left,<br />
+        .galleria-thumb-nav-right{height:55px;}<br />
+        .galleria-info,<br />
+        .galleria-counter{bottom:80px;}</code></p>
 	</div>
 	<?php
 }
@@ -238,7 +250,7 @@ function photo_galleria_load_scripts( ) {
  * Add scripts to head
  */
 function photo_galleria_scripts_head(){
-	
+
 	// Retreive our plugin options
 	$photo_galleria = get_option( 'photo_galleria' );
 	$design = $photo_galleria['design'];
@@ -246,6 +258,8 @@ function photo_galleria_scripts_head(){
 				$design = '/themes/classic/galleria.classic.js';}
 			elseif ($design == 'dots') {
 				$design = '/themes/dots/galleria.dots.js';}
+			elseif ($design == 'lightbox') {
+				$design = '/themes/lightbox/galleria.lightbox.js';}
 	$autoplay = $photo_galleria['autoplay'];
 		if ($autoplay == 1) { $autoplay = '5000'; }
 		if ($autoplay == 0) { $autoplay = 'false'; }
@@ -267,9 +281,6 @@ function photo_galleria_scripts_head(){
   jQuery('#galleria').galleria({
   		autoplay: " . $autoplay . ",
       height: " . $height . ",
-      image_crop: false,
-      thumb_crop: false,
-      thumb_fit: true,
       transition: '" . $transition . "',
       data_config: function(img) {
           // will extract and return image captions from the source:
@@ -292,6 +303,7 @@ add_action('wp_head','photo_galleria_scripts_head');
 function photo_galleria_shortcode($attr) {
 
 global $post;
+$pid = $post->ID;
 
 	// We're trusting author input, so let's at least make sure it looks like a valid orderby statement
 	if ( isset( $attr['orderby'] ) ) {
@@ -302,7 +314,7 @@ global $post;
 	extract(shortcode_atts(array(
 		'orderby' => 'menu_order ASC, ID ASC',
 		'id' => $post->ID,
-		'size' => 'large',
+		'size' => 'medium',
 	), $attr));
 
 	$id = intval($id);

@@ -1,9 +1,9 @@
 .galleria-overlay{background:#000;opacity:.9;width:100%;height:100%;position:fixed;top:0;left:0;-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";filter: alpha(opacity=80);}
 .galleria-popup,
-.galleria-container{width:100%;height:100%;position:fixed;top:0;left:0;overflow:hidden;}
+.galleria-container{width:100%;height:100%;position:fixed;top:0;left:0;overflow:hidden;z-index:1000}
 .galleria-stage{position:absolute;top:20px;bottom:40px;left:50px;right:50px;overflow:visible;}
 .galleria-thumbnails{overflow:hidden;}
-.galleria-thumbnails .galleria-image{width:100px;height:60px;float:left;cursor:pointer;margin: 0 1px 1px 0;}
+.galleria-thumbnails .galleria-image{width:100px;height:100px;float:left;cursor:pointer;margin: 0 6px 6px 0;}
 .galleria-images .galleria-image{}
 .galleria-images img{border:10px solid #fff;-moz-border-radius: 3px;}
 .galleria-image-nav{height:300px;position:absolute;top:50%;margin-top:-150px;width:100%;display:none;}

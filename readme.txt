@@ -48,24 +48,27 @@ http://graphpaperpress.com/support/
 
 == Changelog ==
 
-= Version 0.3.1
+= Version 0.3.2 =
+* Fixes for IE 7 & 8 thumbnail bug
+
+= Version 0.3.1 =
 * Added support for the lightbox theme
 * Updated readme.txt
 
-= Version 0.3.0
+= Version 0.3.0 =
 * Massive overhaul dudes and dudets!
 * Upgraded to jQuery 1.4.2 and Galleria 1.2
 * Added plugin options panel
 * Added design options, including default Galleria themes
 * Added common faq
 
-= Version 0.2.9
+= Version 0.2.9 =
 * Fixed alt tag and background color
 
-= Version 0.2.5
+= Version 0.2.5 =
 * Fixed gallery display on homepage and pages
 
-= Version 0.2.4
+= Version 0.2.4 =
 * Fixed text wrapping issue
 
 = Version 0.2.3 =

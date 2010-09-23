@@ -200,6 +200,9 @@ function photo_galleria_options_do_page() {
 		<p>You likely have a plugin that is inserting a conflicting javascript (the stuff that runs Photo Galleria). Deactivate your plugins, one by one, to see which one is the culprit.  If that doesn't work, switch to the default WordPress theme to see if your theme is actually adding conflicting javascript.  If it is, consider upgrading to <a href="http://graphpaperpress.com" target="_blank" title="visit Graph Paper Press">a better theme.</a>  Finally, delete your browser cache after completing the steps above.</p>
 		<h4>Can I have multiple Photo Gallerias on my homepage, archive page, page or post?</h4>
 		<p>No.  Why?  Photo Galleria loads large images all at once.  If you have, say, 10 posts on your archive page, each containing 10 images, your users would have to wait for 100 large images to load before they could even begin to interact with your Photo Galleria.  This would make for a terrible user experience.</p>
+		<h4>I have problems in IE.  How can I fix it?</h4>
+		<p>First, this plugin likely won't work in IE6. Why?  IE isn't a standards compliant browser.  Second, IE users might want to add this CSS to help define the height/width of the galleria container CSS element (change the pixel count to whatever you prefer):</p>
+		<p><code>.galleria-container { height: 590px; width: 950px; }</code></p>
 		<h4>How do I change colors, thumbnail sizes or icons?</h4>
 		<p>Virtually every aspect of each theme is customizable with CSS.  Themes are located here: /wp-content/plugins/photo-galleria/themes/.  For example, here I will enlarge the thumbnails:</p>
         <p><code>.galleria-thumbnails .galleria-image{width:90px;height:60px;}<br />

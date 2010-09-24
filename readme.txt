@@ -48,6 +48,9 @@ http://graphpaperpress.com/support/
 
 == Changelog ==
 
+= Version 0.3.3 =
+* Fixes for IE 6, 7 & 8.  Moved CSS to wp_header.
+
 = Version 0.3.2 =
 * Fixes for IE 7 & 8 thumbnail bug
 

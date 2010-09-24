@@ -3,13 +3,16 @@
 Plugin Name: Photo Galleria
 Plugin URI: http://graphpaperpress.com/2008/05/31/photo-galleria-plugin-for-wordpress/
 Description: Creates beautiful slideshows from embedded WordPress galleries.
-Version: 0.3.2
+Version: 0.3.3
 Author: Thad Allender
 Author URI: http://graphpaperpress.com
 License: GPL
 *****************************************************************
 Bravo Aino!
 http://galleria.aino.se/
+
+Mr. Philip Arthur Moore for IE debugging
+http://www.philiparthurmoore.com
 ****************************************************************/
 
 /**
@@ -270,7 +273,6 @@ function photo_galleria_scripts_head(){
     if($height=="")
         $height = 500;
 	$transition = $photo_galleria['transition'];
-	$color = $photo_galleria['color'];
 	
 	$pluginURI = get_option('siteurl').'/wp-content/plugins/'.dirname(plugin_basename(__FILE__));
 	
@@ -293,12 +295,18 @@ function photo_galleria_scripts_head(){
           };
       }
   });
-  </script>
-  <style type='text/css'>.galleria-container {background-color: " . $color . "}</style>";
+  </script>";
 	}
 }
 
+function photo_galleria_css_head() {
+	$photo_galleria = get_option( 'photo_galleria' );
+	$color = $photo_galleria['color'];
+	echo '<style type="text/css">.galleria-container {background-color: '.$color.' ;}</style>';
+}
+
 add_action('wp_footer','photo_galleria_scripts_head');
+add_action('wp_head','photo_galleria_css_head');
 
 /**
  * Lets make new gallery shortcode

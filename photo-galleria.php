@@ -3,7 +3,7 @@
 Plugin Name: Photo Galleria
 Plugin URI: http://graphpaperpress.com/2008/05/31/photo-galleria-plugin-for-wordpress/
 Description: Creates beautiful slideshows from embedded WordPress galleries.
-Version: 0.3.3
+Version: 0.3.4
 Author: Thad Allender
 Author URI: http://graphpaperpress.com
 License: GPL
@@ -51,11 +51,11 @@ $design_options = array(
 	'dots' => array(
 		'value' =>	'dots',
 		'label' => __( 'Dots' )
-	),
-		'lightbox' => array(
-		'value' =>	'lightbox',
-		'label' => __( 'Lightbox' )
-	),
+	)
+		//'fullscreen' => array(
+		//'value' =>	'fullscreen',
+		//'label' => __( 'Fullscreen' )
+	//),
 );
 
 $transition_options = array(
@@ -264,8 +264,8 @@ function photo_galleria_scripts_head(){
 				$design = '/themes/classic/galleria.classic.js';}
 			elseif ($design == 'dots') {
 				$design = '/themes/dots/galleria.dots.js';}
-			elseif ($design == 'lightbox') {
-				$design = '/themes/lightbox/galleria.lightbox.js';}
+			//elseif ($design == 'fullscreen') {
+				//$design = '/themes/fullscreen/galleria.fullscreen.js';}
 	$autoplay = $photo_galleria['autoplay'];
 		if ($autoplay == 1) { $autoplay = '5000'; }
 		if ($autoplay == 0) { $autoplay = 'false'; }
@@ -302,6 +302,7 @@ function photo_galleria_scripts_head(){
 function photo_galleria_css_head() {
 	$photo_galleria = get_option( 'photo_galleria' );
 	$color = $photo_galleria['color'];
+	if ($color != '')
 	echo '<style type="text/css">.galleria-container {background-color: '.$color.' ;}</style>';
 }
 

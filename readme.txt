@@ -6,15 +6,17 @@ Requires at least: 3.0
 Tested up to: 3.0.1
 Stable tag: trunk
 
-Photo Galleria is a simple, yet elegant, plugin for photographers and designers who want to beautify and streamline their Wordpress photo galleries.
+Photo Galleria is a simple, yet elegant, plugin for photographers and designers who want to beautify and streamline their WordPress photo galleries.
 
 == Description ==
 
-Photo Galleria is a simple, yet elegant, plugin for photographers and designers who want to beautify and simplify their Wordpress photo galleries. The Photo Galleria plugin filters the default Wordpress gallery shortcode and replaces it with an elegant jQuery-powered gallery.  Simply upload photos as normal and the Photo Galleria plugin will create a photo gallery with fade-in and fade-out effects common on flash-based websites. All the transitions happen inline without having to navigate to multiple Wordpress attachment pages. This plugin comes with different design options, which you can select on the Photo Galleria Settings page.  Pretty neat, eh?
+Photo Galleria is a simple, yet elegant, plugin for photographers and designers who want to beautify and simplify their WordPress photo galleries. The Photo Galleria plugin filters the default WordPress gallery shortcode and replaces it with an elegant jQuery-powered gallery.  Simply upload photos as normal and the Photo Galleria plugin will create a photo gallery with fade-in and fade-out effects common on flash-based websites. All the transitions happen inline without having to navigate to multiple WordPress attachment pages. This plugin comes with different design options, which you can select on the Photo Galleria Settings page.  Pretty neat, eh?
 
-Demo:  http://graphpaperpress.com/2008/05/31/photo-galleria-plugin-for-wordpress/
+Live Demo:  http://demo.graphpaperpress.com/photo-galleria/
 
-Support Forum:  http://graphpaperpress.com/support/
+Releas Info: http://graphpaperpress.com/2008/05/31/photo-galleria-plugin-for-wordpress/
+
+Support:  http://graphpaperpress.com/support/
 
 == Installation ==
 
@@ -47,6 +49,11 @@ Virtually every aspect of each theme is customizable with CSS.  Themes are locat
 http://graphpaperpress.com/support/
 
 == Changelog ==
+
+= Version 0.3.4 =
+* Updated galleria.js to fix reported IE problems.
+* Removed Lightbox theme.  It is no longer supported by galleria.js.
+* Added CSS conditionally if set.
 
 = Version 0.3.3 =
 * Fixes for IE 6, 7 & 8.  Moved CSS to wp_header.

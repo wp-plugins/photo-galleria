@@ -14,7 +14,7 @@ Photo Galleria is a simple, yet elegant, plugin for photographers and designers 
 
 Live Demo:  http://demo.graphpaperpress.com/photo-galleria/
 
-Releas Info: http://graphpaperpress.com/2008/05/31/photo-galleria-plugin-for-wordpress/
+Release Info: http://graphpaperpress.com/2008/05/31/photo-galleria-plugin-for-wordpress/
 
 Support:  http://graphpaperpress.com/support/
 

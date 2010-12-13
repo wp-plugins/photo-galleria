@@ -50,6 +50,9 @@ http://graphpaperpress.com/support/
 
 == Changelog ==
 
+= Version 0.3.5 =
+* IE 7 & 8 bug fix
+
 = Version 0.3.4 =
 * Updated galleria.js to fix reported IE problems.
 * Removed Lightbox theme.  It is no longer supported by galleria.js.

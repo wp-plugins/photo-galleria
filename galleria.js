@@ -121,6 +121,7 @@ var Base = Class.extend({
                 return !!document.body;
             }, function() {
                 var testElem = this.create('div', 'galleria-container galleria-stage');
+               	this.setStyle(testElem, {height:'1px', width:'1px'});
                 this.moveOut(testElem);
                 document.body.appendChild(testElem);
                 var getStyles = this.proxy(function() {

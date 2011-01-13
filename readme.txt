@@ -3,8 +3,8 @@ Contributors: endortrails
 Donate link: http://graphpaperpress.com/
 Tags: photo, photos, gallery, galleries, photo gallery, lightbox 
 Requires at least: 3.0
-Tested up to: 3.0.1
-Stable tag: trunk
+Tested up to: 3.1
+Stable tag: 0.3.6
 
 Photo Galleria is a simple, yet elegant, plugin for photographers and designers who want to beautify and streamline their WordPress photo galleries.
 
@@ -12,11 +12,9 @@ Photo Galleria is a simple, yet elegant, plugin for photographers and designers 
 
 Photo Galleria is a simple, yet elegant, plugin for photographers and designers who want to beautify and simplify their WordPress photo galleries. The Photo Galleria plugin filters the default WordPress gallery shortcode and replaces it with an elegant jQuery-powered gallery.  Simply upload photos as normal and the Photo Galleria plugin will create a photo gallery with fade-in and fade-out effects common on flash-based websites. All the transitions happen inline without having to navigate to multiple WordPress attachment pages. This plugin comes with different design options, which you can select on the Photo Galleria Settings page.  Pretty neat, eh?
 
-Live Demo:  http://demo.graphpaperpress.com/photo-galleria/
-
-Release Info: http://graphpaperpress.com/2008/05/31/photo-galleria-plugin-for-wordpress/
-
-Support:  http://graphpaperpress.com/support/
+* [Live Demo](http://demo.graphpaperpress.com/photo-galleria/)
+* [Release Info](http://graphpaperpress.com/2008/05/31/photo-galleria-plugin-for-wordpress/)
+* [Support](http://graphpaperpress.com/support/)
 
 == Installation ==
 
@@ -49,6 +47,12 @@ Virtually every aspect of each theme is customizable with CSS.  Themes are locat
 http://graphpaperpress.com/support/
 
 == Changelog ==
+
+= Version 0.3.6 =
+* Added new options
+* Added support for multiple photo gallerias on home and archive pages
+* Opera 11 bug fix
+* Updated galleria.js to version 1.2 preprelease
 
 = Version 0.3.5 =
 * IE 7 & 8 bug fix

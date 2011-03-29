@@ -5,7 +5,7 @@
 Plugin Name: Photo Galleria
 Plugin URI: http://graphpaperpress.com/2008/05/31/photo-galleria-plugin-for-wordpress/
 Description: Creates beautiful slideshows from embedded WordPress galleries.
-Version: 0.3.6
+Version: 0.3.7
 Author: Thad Allender
 Author URI: http://graphpaperpress.com
 License: GPL
@@ -342,7 +342,7 @@ global $post, $wp_query;
 	
 	// show only on homepage and archive pages
 	if ( !is_admin() && is_home() || !is_admin() && is_archive() ) {
-		echo "\n<script>
+		echo "\n<script type=\"text/javascript\">
 			    
   // Load theme
   Galleria.loadTheme('" . $design . "');\n\t";
@@ -424,7 +424,7 @@ function photo_galleria_css_head() {
 	$photo_galleria = get_option( 'photo_galleria' );
 	$color = $photo_galleria['color'];
 	if ($color != '')
-	echo '<style type="text/css">.galleria-container {background-color: '.$color.' ;}</style>';
+	echo '<style type="text/css">.galleria-container {background-color: '.$color.' !important;}</style>';
 }
 
 add_action('wp_footer','photo_galleria_scripts_head');
@@ -483,8 +483,8 @@ $image_size = $photo_galleria['image'];
 		// Get the Permalink
 		$permalink = get_permalink();
 		// Set the image captions
-		$description = $attachment->post_content;
-		if($description == '') $description = $attachment->post_excerpt;
+		$description = htmlspecialchars($attachment->post_content, ENT_QUOTES);
+		if($description == '') $description = htmlspecialchars($attachment->post_excerpt, ENT_QUOTES);
 
 		// Build html for each image
 		$output .= "\n\t\t<div>";
@@ -508,4 +508,59 @@ $image_size = $photo_galleria['image'];
 
 	// Add our new shortcode with galleria markup
 	add_shortcode('gallery', 'photo_galleria_shortcode');
+
+// Copy Photo Galleria Themes
+function photo_galleria_copy_themes($source, $dest) {
+    // Check for symlinks
+    if (is_link($source)) {
+        return symlink(readlink($source), $dest);
+    }
+ 
+    // Simple copy for a file
+    if (is_file($source)) {
+        return copy($source, $dest);
+    }
+ 
+    // Make destination directory
+    if (!is_dir($dest)) {
+        mkdir($dest);
+    }
+ 
+    // Loop through the folder
+    $dir = dir($source);
+    while (false !== $entry = $dir->read()) {
+        // Skip pointers
+        if ($entry == '.' || $entry == '..') {
+            continue;
+        }
+ 
+        // Deep copy directories
+        photo_galleria_copy_themes("$source/$entry", "$dest/$entry");
+    }
+ 
+    // Clean up
+    $dir->close();
+    return true;
+}
+
+// Backup Themes 
+function photo_galleria_backup_themes() {
+    $to = dirname(__FILE__)."/../photo_galleria_themes_backup/";
+    $from = dirname(__FILE__)."/themes/";
+    photo_galleria_copy_themes($from, $to);
+}
+
+// Recover Themes
+function photo_galleria_recover_themes() {
+    $from = dirname(__FILE__)."/../photo_galleria_themes_backup/";
+    $to = dirname(__FILE__)."/themes/";
+    photo_galleria_copy_themes($from, $to);
+    if (is_dir($from)) {
+        hpt_rmdirr($from);
+    }
+}
+
+add_filter('upgrader_pre_install', 'photo_galleria_backup_themes', 10, 2);
+add_filter('upgrader_post_install', 'photo_galleria_recover_themes', 10, 2);
+
 ?>

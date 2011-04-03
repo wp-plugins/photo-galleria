@@ -5,7 +5,7 @@
 Plugin Name: Photo Galleria
 Plugin URI: http://graphpaperpress.com/2008/05/31/photo-galleria-plugin-for-wordpress/
 Description: Creates beautiful slideshows from embedded WordPress galleries.
-Version: 0.3.7
+Version: 0.3.8
 Author: Thad Allender
 Author URI: http://graphpaperpress.com
 License: GPL
@@ -393,7 +393,7 @@ global $post, $wp_query;
 	
 	// Show only on single posts and pages
 	if ( !is_admin() && is_single() || !is_admin() && is_page() ) {
-		echo "\n<script>
+		echo "\n<script type=\"text/javascript\">
 			    
   // Load theme
   Galleria.loadTheme('" . $design . "');\n\t";

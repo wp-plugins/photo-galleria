@@ -4,7 +4,7 @@ Donate link: http://graphpaperpress.com/
 Tags: photo, photos, gallery, galleries, photo gallery, lightbox 
 Requires at least: 3.0
 Tested up to: 3.1
-Stable tag: 0.3.8
+Stable tag: 0.3.9
 
 Photo Galleria is a simple, yet elegant, plugin for photographers and designers who want to beautify and streamline their WordPress photo galleries.
 
@@ -47,11 +47,14 @@ Virtually every aspect of each theme is customizable with CSS.  Themes are locat
 http://graphpaperpress.com/support/
 
 == Update Notice ==
-* Non-critical update.  Simple validation cleanup on single posts and pages.
+* Important update: Add `clicknext: 'false',` into galleria call to avoid image click / page reload problems.
 
 == Changelog ==
 
-= Version 0.3.7 =
+= Version 0.3.9 =
+* Add `clicknext: 'false',` into galleria call to avoid image click / page reload problems.
+
+= Version 0.3.8 =
 * Simple validation cleanup on single posts/pages
 
 = Version 0.3.7 =

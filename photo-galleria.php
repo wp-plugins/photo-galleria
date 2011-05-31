@@ -557,11 +557,11 @@ function photo_galleria_recover_themes() {
     $to = dirname(__FILE__)."/themes/";
     photo_galleria_copy_themes($from, $to);
     if (is_dir($from)) {
-        hpt_rmdirr($from);
+        rmdir($from);
     }
 }
 
-add_filter('upgrader_pre_install', 'photo_galleria_backup_themes', 10, 2);
-add_filter('upgrader_post_install', 'photo_galleria_recover_themes', 10, 2);
+//add_filter('upgrader_pre_install', 'photo_galleria_backup_themes', 10, 2);
+//add_filter('upgrader_post_install', 'photo_galleria_recover_themes', 10, 2);
 
 ?>

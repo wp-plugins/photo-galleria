@@ -3,8 +3,8 @@ Contributors: endortrails, philiparthurmoore
 Donate link: http://graphpaperpress.com/
 Tags: photo, photos, gallery, galleries, photo gallery, lightbox 
 Requires at least: 3.0
-Tested up to: 3.1.3
-Stable tag: 0.4.0
+Tested up to: 3.2.1
+Stable tag: 0.4.1
 
 Photo Galleria is a simple, yet elegant, plugin for photographers and designers who want to beautify and streamline their WordPress photo galleries.
 
@@ -47,9 +47,12 @@ Virtually every aspect of each theme is customizable with CSS.  Themes are locat
 http://graphpaperpress.com/support/
 
 == Update Notice ==
-* Important update: Comment out add_filter calls to avoid fatal errors on plugin removal and installation.
+* Remove shortcode filtering from the Graph Paper Press Page template page-blog.php, for Widescreen and Modularity (and child themes)
 
 == Changelog ==
+
+= Version 0.4.1 =
+* Remove shortcode filtering from the Graph Paper Press Page template page-blog.php, for Widescreen and Modularity (and child themes)
 
 = Version 0.4.0 =
 * Comment out add_filter calls to avoid fatal errors on plugin removal and installation.

@@ -1,10 +1,10 @@
 === Plugin Name ===
 Contributors: endortrails, philiparthurmoore
 Donate link: http://graphpaperpress.com/
-Tags: photo, photos, gallery, galleries, photo gallery, lightbox 
+Tags: photo, photos, gallery, galleries, photo gallery, lightbox
 Requires at least: 3.0
 Tested up to: 3.2.1
-Stable tag: 0.4.1
+Stable tag: 0.5
 
 Photo Galleria is a simple, yet elegant, plugin for photographers and designers who want to beautify and streamline their WordPress photo galleries.
 
@@ -28,28 +28,30 @@ Photo Galleria is a simple, yet elegant, plugin for photographers and designers 
 == Frequently Asked Questions ==
 
 = Why does mine not work? =
-
 You likely have a plugin that is inserting a conflicting javascript (the stuff that runs Photo Galleria). Deactivate your plugins, one by one, to see which one is the culprit.  If that doesn't work, switch to the default WordPress theme to see if your theme is actually adding conflicting javascript.  If it is, consider upgrading to a theme that enqueues javascript the smart way.  Finally, delete your browser cache after completing the steps above.
 
 = What about titles and captions? =
-
 Yep.  If you got 'em, this plugin can display 'em  Just make sure you add yours to each image after uploading.
 
-= Can I have multiple Photo Gallerias on my homepage, archive page, page or post? =
+= Does this plugin work with Internet Explorer 6 or 7? =
+No, and it never will.
 
-No.  Why?  Photo Galleria loads large images all at once.  If you have, say, 10 posts on your archive page, each containing 10 images, your users would have to wait for 100 large images to load before they could even begin to interact with your Photo Galleria.  This would make for a terrible user experience.
+= How can I change the gallery background color? =
+The background color of the gallery is controlled with css. Add this css to your theme's style.css file: .galleria-container { background-color: #ffffff; }
 
-= How do I change colors, thumbnail sizes or icons? =
+= How do I center my thumbnails? =
+Add this css to your theme's style.css file: .galleria-thumbnails { margin: 0 auto; }
 
-Virtually every aspect of each theme is customizable with CSS.  Themes are located here: /wp-content/plugins/photo-galleria/themes/
- 
 = How do I get help? =
 http://graphpaperpress.com/support/
 
 == Update Notice ==
-* Remove shortcode filtering from the Graph Paper Press Page template page-blog.php, for Widescreen and Modularity (and child themes)
+* Removed the circle theme, so if you use it, don't update
 
 == Changelog ==
+
+= Version 0.5 =
+* Updated to the latest galleria script, coding standards, removed unnecessary code
 
 = Version 0.4.1 =
 * Remove shortcode filtering from the Graph Paper Press Page template page-blog.php, for Widescreen and Modularity (and child themes)

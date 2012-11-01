@@ -5,7 +5,7 @@
 Plugin Name: Photo Galleria
 Plugin URI: http://graphpaperpress.com/2008/05/31/photo-galleria-plugin-for-wordpress/
 Description: Creates beautiful slideshows from embedded WordPress galleries.
-Version: 0.5
+Version: 0.5.1
 Author: Thad Allender
 Author URI: http://graphpaperpress.com
 License: GPL
@@ -177,6 +177,18 @@ function photo_galleria_options_do_page() {
 				</tr>
 
 				<?php
+				/**
+				 * Crop options
+				 */
+				?>
+				<tr valign="top"><th scope="row"><?php _e( 'Crop to Fit' ); ?></th>
+					<td>
+						<input id="photo_galleria[crop]" name="photo_galleria[crop]" type="checkbox" value="1" <?php checked( '1', $options['crop'] ); ?> />
+						<label class="description" for="photo_galleria[crop]"><?php _e( 'Check to ensure all images are scaled to fill the stage, centered and cropped.' ); ?></label>
+					</td>
+				</tr>
+
+				<?php
 
 				/**
 				 * Transition options
@@ -239,6 +251,11 @@ function photo_galleria_options_validate( $input ) {
 		$input['autoplay'] = null;
 	$input['autoplay'] = ( $input['autoplay'] == 1 ? 1 : 0 );
 
+	// Our checkbox value is either 0 or 1
+	if ( ! isset( $input['crop'] ) )
+		$input['crop'] = null;
+	$input['crop'] = ( $input['crop'] == 1 ? 1 : 0 );
+
 	// Say our text option must be safe text with no HTML tags
 	$input['height'] = wp_filter_nohtml_kses( $input['height'] );
 
@@ -288,16 +305,27 @@ function photo_galleria_script_options(){
 		$photo_galleria = get_option( 'photo_galleria' );
 
 		$design = $photo_galleria['design'];
-		if( $design == 'classic' || $design == '' ) {
+		if ( $design == 'classic' || $design == '' )
 			$design_url = PHOTO_GALLERIA_PLUGIN_URL . '/js/themes/classic/galleria.classic.min.js';
-		} else if ( stristr( $design, '.js' ) !== false ) {
+		elseif ( stristr( $design, '.js' ) !== false )
 			$design_url = get_theme_root_uri() . PHOTO_GALLERIA_USER_THEME_FOLDER . $design;
-		}
+
 		$autoplay = $photo_galleria['autoplay'];
-		if ( $autoplay == 1 ) { $autoplay = '5000'; }
-		if ( $autoplay == 0 ) { $autoplay = 'false'; }
+		if ( $autoplay == 1 )
+			$autoplay = '5000';
+		else
+			$autoplay = 'false';
+
+		$crop = $photo_galleria['crop'];
+		if ( $crop == 1 )
+			$crop = 'true';
+		else
+			$crop = 'false';
+
 		$height = $photo_galleria['height'];
-		if ( $height == '' ) { $height = 500; }
+		if ( $height == '' )
+			$height = 500;
+
 		$transition = $photo_galleria['transition'];
 
 		?>
@@ -310,6 +338,7 @@ function photo_galleria_script_options(){
 					height: <?php echo $height; ?>,
 					transition: '<?php echo $transition; ?>',
 					clicknext: true,
+					imageCrop: <?php echo $crop; ?>,
 					data_config: function(img) {
 						// will extract and return image captions from the source:
 						return  {

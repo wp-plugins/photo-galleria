@@ -234,8 +234,6 @@ add_action( 'wp_footer', 'photo_galleria_scripts_head' );
 function photo_galleria_shortcode($attr) {
 
 global $post;
-$pid = $post->ID;
-$photo_galleria = get_option( 'photo_galleria' );
 
 	// We're trusting author input, so let's at least make sure it looks like a valid orderby statement
 	if ( isset( $attr['orderby'] ) ) {
@@ -263,7 +261,7 @@ $photo_galleria = get_option( 'photo_galleria' );
 	}
 
 	// Build galleria markup
-	$output = apply_filters( 'gallery_style', '<div id="galleria-' . $pid . '" class="galleria">' );
+	$output = apply_filters( 'gallery_style', '<div id="galleria-' . $post->ID . '" class="galleria">' );
 
 	// Loop through each image
 	foreach ( $attachments as $id => $attachment ) {
@@ -306,9 +304,7 @@ $photo_galleria = get_option( 'photo_galleria' );
  */
 
 function photo_galleria_add_shortcode() {
-	if ( ( is_single() || is_page() ) && ( !is_page_template('page-blog.php') ) ){
-		remove_shortcode( 'gallery' );
-		add_shortcode( 'gallery', 'photo_galleria_shortcode' );
-	}
+	remove_shortcode( 'gallery' );
+	add_shortcode( 'gallery', 'photo_galleria_shortcode' );
 }
 add_action( 'wp_head', 'photo_galleria_add_shortcode' );

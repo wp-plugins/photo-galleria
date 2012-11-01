@@ -50,6 +50,9 @@ http://graphpaperpress.com/support/
 
 == Changelog ==
 
+= Version 0.5.1 =
+* Supports paid themes, enqueue js only where shortcode is used, new options
+
 = Version 0.5 =
 * Updated to the latest galleria script, coding standards, removed unnecessary code
 
